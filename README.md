@@ -5,10 +5,6 @@
 Home: [Storybook](https://storybook.js.org/)  
 For detailed reasoning see [Storybook - Why](https://storybook.js.org/docs/7.0/react/get-started/why-storybook).
 
-Links:
-
-- [Hosted storybook](https://6424e669da50b204eb64cfe0-yevdxbjcse.chromatic.com/)
-
 # Major steps
 
 Create a React app:
