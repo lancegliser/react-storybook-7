@@ -3,7 +3,11 @@
 > A collection of stories and configs to demonstrate how Storybook can improve you and your company's velocity.
 
 Home: [Storybook](https://storybook.js.org/)  
-For detailed reasoning see [Storybook - Why](https://storybook.js.org/docs/7.0/react/get-started/why-storybook).   
+For detailed reasoning see [Storybook - Why](https://storybook.js.org/docs/7.0/react/get-started/why-storybook).
+
+Links:
+
+- [Hosted storybook](https://6424e669da50b204eb64cfe0-yevdxbjcse.chromatic.com/)
 
 # Major steps
 
@@ -106,5 +110,3 @@ specifically, via [GitHub Actions](https://www.chromatic.com/docs/github-actions
 
 You'll need to setup a secret in your GitHub project. Remember the chromatic command they gave on install?
 That's your token. If you need a copy, you can always go to your project > manage > configure to get it.
-
-
