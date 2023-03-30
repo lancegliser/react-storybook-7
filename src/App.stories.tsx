@@ -10,8 +10,12 @@ const meta = {
         layout: 'fullscreen',
     },
     render: () => (
-        <div id={"root"}>
-            <App />
+        // Force a div to reflect the `body` standards in the index
+        <div style={{  height: "100%", display: "flex", placeItems: "center" }}>
+            {/*Force a div to reflect the '#root` in the app*/}
+            <div id={"root"}>
+                <App />
+            </div>
         </div>
     )
 } satisfies Meta<typeof App>;
