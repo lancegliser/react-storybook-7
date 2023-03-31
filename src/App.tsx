@@ -3,9 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {Helmet} from "react-helmet-async";
+import {RouteObject} from "react-router/dist/lib/context";
+import {LoaderFunction, useLoaderData} from "react-router-dom";
 
 const App: React.FunctionComponent = () => {
-  const [count, setCount] = useState(0);
+  const { initialCount } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+  const [count, setCount] = useState<number>(initialCount || 0);
   const title = "Vite + React";
 
   return (
@@ -39,4 +42,17 @@ const App: React.FunctionComponent = () => {
   )
 }
 
-export default App
+export default App;
+
+const loader: LoaderFunction = async ({ params}) => {
+  const { initialCount } = params;
+  return {
+    initialCount: initialCount ? parseInt(initialCount) : 0
+  };
+}
+
+export const RouteApp: RouteObject = {
+  path: `:initialCount?`,
+  element: <App />,
+  loader
+};
