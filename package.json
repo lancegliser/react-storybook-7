@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx src/ --color",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --project-token=ccb7f963ae08"
@@ -29,9 +32,21 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "chromatic": "^6.17.2",
+    "eslint": "^8.36.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-storybook": "^0.6.11",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.3",
+    "prettier": "^2.0.2",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.0-rc.10",
     "typescript": "^4.9.3",
-    "vite": "^4.2.0"
+    "vite": "^4.2.0",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md,graphql,html}": [
+      "prettier --write"
+    ]
   }
 }

@@ -1,6 +1,4 @@
-import {RouteObject} from "react-router/dist/lib/context";
-import {RouteApp} from "./App";
+import { RouteObject } from "react-router/dist/lib/context";
+import { RouteApp } from "./App";
 
-export const routes: RouteObject[] = [
-    RouteApp
-];
+export const routes: RouteObject[] = [RouteApp];
