@@ -40,6 +40,10 @@ npm run storybook
 
 # Writing stories
 
+# Common package integrations
+
+- [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
+
 # Publishing for collaboration
 
 [Storybook](https://storybook.js.org/) is amazing for working with other _developers_.  
@@ -68,7 +72,7 @@ You can look forward to features like:
 - Automatic versioning
 - And more as they are still hiring in 2023...
 
-## Github + Chromatic installation
+## GitHub + Chromatic installation
 
 Start by getting yourself an account, then come back with a new project created.
 
