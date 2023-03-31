@@ -43,6 +43,7 @@ npm run storybook
 # Common package integrations
 
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 
 # Publishing for collaboration
 
