@@ -44,6 +44,8 @@ npm run storybook
 
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+  - Keep your eyes on the [React Router 6 Addon](https://storybook.js.org/addons/storybook-addon-react-router-v6) 
+    It does basically what I've prototyped, but well! Just waiting on a v7 release.
 
 # Publishing for collaboration
 
