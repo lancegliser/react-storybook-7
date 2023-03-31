@@ -21,7 +21,7 @@ As of 2023-03-29
 npx storybook@next init
 ```
 
-Eventually: 
+Eventually:
 
 ```bash
 npx storybook@7 init
@@ -35,7 +35,7 @@ There's not other choice required 🤩
 # Running Storybook
 
 ```bash
-npm run storybook 
+npm run storybook
 ```
 
 # Writing stories
@@ -44,20 +44,20 @@ npm run storybook
 
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-  - Keep your eyes on the [React Router 6 Addon](https://storybook.js.org/addons/storybook-addon-react-router-v6) 
+  - Keep your eyes on the [React Router 6 Addon](https://storybook.js.org/addons/storybook-addon-react-router-v6)
     It does basically what I've prototyped, but well! Just waiting on a v7 release.
 
 # Publishing for collaboration
 
 [Storybook](https://storybook.js.org/) is amazing for working with other _developers_.  
-You can and should use it to help create internal or public packages using `npm publish`.  
+You can and should use it to help create internal or public packages using `npm publish`.
 
 When you start needing to work with a broader audience not code related, you need a way to publish your work
 in a way they can appreciate. Sure you could ask a designer, product owner, or CEO to "clone, install and run!".
 You're after better adoption though. You want the most recent result, in front of the, in something as simple as a link
 in your wiki.
 
-You _could_ publish the Storybook's built version using `npm run build-storybook` and your own CI/CD setup. 
+You _could_ publish the Storybook's built version using `npm run build-storybook` and your own CI/CD setup.
 
 Or, you can integrate with the mother ship and get all kinds of fun tools via [Chromatic](https://www.chromatic.com/). 🚀
 The folks that build Storybook are actually the open source arm of Chromatic! Using Chromatic ensures a smooth,
@@ -65,7 +65,7 @@ frictionless experience for you, and your stake holders.
 
 You can review their totally valid sales pitch on their site, but at a high level:
 
-> Chromatic automates gathering UI feedback, visual testing, and documentation, 
+> Chromatic automates gathering UI feedback, visual testing, and documentation,
 > so developers can iterate faster with less manual work.
 
 You can look forward to features like:

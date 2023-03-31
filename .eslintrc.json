@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "react-app",
-    "react-app/jest",
-    "plugin:storybook/recommended"
-  ],
+  "extends": ["react-app", "react-app/jest", "plugin:storybook/recommended"],
   "rules": {
     "complexity": [
       "error",
@@ -16,9 +12,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.stories.*"
-      ],
+      "files": ["**/*.stories.*"],
       "rules": {
         "import/no-anonymous-default-export": "off"
       }
