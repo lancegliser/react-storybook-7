@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
+    "pre-commit": "lint-staged",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
