@@ -1,7 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj} from '@storybook/react';
 
-import App from './App';
+import App, {RouteAppParams} from './App';
 import "./index.css"
+import React from "react";
+import {getRouterDecorator} from "../.storybook/decorators";
 
 const meta = {
     component: App,
@@ -23,4 +25,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+    decorators: [
+        getRouterDecorator({
+            loader: () => ({
+                initialCount: undefined,
+            } as RouteAppParams)
+        })
+    ]
+};
+
+export const WithInitialCount33: Story = {
+    decorators: [
+        getRouterDecorator({
+            loader: () => ({
+                initialCount: '33'
+            } as RouteAppParams)
+        })
+    ]
+};

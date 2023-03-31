@@ -44,8 +44,11 @@ const App: React.FunctionComponent = () => {
 
 export default App;
 
+export interface RouteAppParams {
+  initialCount?: string;
+}
 const loader: LoaderFunction = async ({ params}) => {
-  const { initialCount } = params;
+  const { initialCount } = params as RouteAppParams;
   return {
     initialCount: initialCount ? parseInt(initialCount) : 0
   };
