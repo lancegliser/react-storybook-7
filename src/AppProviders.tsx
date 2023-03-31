@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 interface AppProvidersProps {
     children?: React.ReactNode;
 }
-const AppProviders: React.FunctionComponent<AppProvidersProps> = ({children}) => {
+const AppProviders: React.FunctionComponent<AppProvidersProps> = ({ children }) => {
     return (
         <>
             {/*
