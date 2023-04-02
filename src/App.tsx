@@ -5,6 +5,7 @@ import "./App.css";
 import { Helmet } from "react-helmet-async";
 import { RouteObject } from "react-router/dist/lib/context";
 import { LoaderFunction, useLoaderData } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
 
 const App: React.FunctionComponent = () => {
   const { initialCount } = useLoaderData() as Awaited<
@@ -20,25 +21,30 @@ const App: React.FunctionComponent = () => {
       </Helmet>
       <div className="App">
         <div>
-          <a href="https://vitejs.dev" target="_blank">
+          <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
             <img src={viteLogo} className="logo" alt="Vite logo" />
           </a>
-          <a href="https://reactjs.org" target="_blank">
+          <a href="https://reactjs.org" target="_blank" rel="noreferrer">
             <img src={reactLogo} className="logo react" alt="React logo" />
           </a>
         </div>
-        <h1>{title}</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
+        <Typography variant={"h1"}>{title}</Typography>
+        <Box sx={{ p: 2 }}>
+          <Button
+            color={"primary"}
+            variant={"contained"}
+            onClick={() => setCount((count) => count + 1)}
+            sx={{ mb: 2 }}
+          >
             count is {count}
-          </button>
-          <p>
+          </Button>
+          <Typography>
             Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-        <p className="read-the-docs">
+          </Typography>
+        </Box>
+        <Typography color={"text.secondary"}>
           Click on the Vite and React logos to learn more
-        </p>
+        </Typography>
       </div>
     </>
   );

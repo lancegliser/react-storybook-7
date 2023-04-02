@@ -42,6 +42,7 @@ npm run storybook
 
 # Common package integrations
 
+- [Material UI](https://mui.com/)
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
   - Keep your eyes on the [React Router 6 Addon](https://storybook.js.org/addons/storybook-addon-react-router-v6)
