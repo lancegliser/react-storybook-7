@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import App, { RouteAppParams } from "./App";
 import "./index.css";
 import React from "react";
 import { getRouterDecorator } from "../.storybook/decorators";
+import { userEvent, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
+import { delayForCanvas } from "../tests/utils/delay";
 
 const meta = {
   component: App,
@@ -34,6 +36,24 @@ export const Default: Story = {
         } as RouteAppParams),
     }),
   ],
+  /*
+   * See https://storybook.js.org/docs/7.0/react/writing-stories/play-function#working-with-the-canvas
+   * to learn more about using the canvasElement to query the DOM
+   */
+  play: async ({ canvasElement }) => {
+    // Seems like a bug. See: https://github.com/storybookjs/storybook/issues/18663
+    await delayForCanvas(canvasElement);
+    const canvas = await within(canvasElement);
+
+    const button = canvas.getByText("count is 0", { selector: "button" });
+    // canvas.getByRole("button"); // Would require 'role="button"' in our component
+    // canvas.getByTestId("button"); // Would require 'data-testid=""' in our component
+
+    await userEvent.click(button);
+    await expect(
+      canvas.getByText(`count is 1`, { selector: "button" })
+    ).toBeInTheDocument();
+  },
 };
 
 export const WithInitialCount33: Story = {
