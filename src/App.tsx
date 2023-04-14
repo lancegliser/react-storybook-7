@@ -4,8 +4,13 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { Helmet } from "react-helmet-async";
 import { RouteObject } from "react-router/dist/lib/context";
-import { LoaderFunction, useLoaderData } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Link as RouterLink,
+  LoaderFunction,
+  useLoaderData,
+} from "react-router-dom";
+import { Box, Button, Link, Typography } from "@mui/material";
+import { RouteLeaderBoard } from "./components/LeaderBoard/Page";
 
 const App: React.FunctionComponent = () => {
   const { initialCount } = useLoaderData() as Awaited<
@@ -44,6 +49,12 @@ const App: React.FunctionComponent = () => {
         </Box>
         <Typography color={"text.secondary"}>
           Click on the Vite and React logos to learn more
+        </Typography>
+        <Typography color={"text.success"}>
+          View the{" "}
+          <RouterLink to={RouteLeaderBoard.path!}>
+            <Link>leader board</Link>!
+          </RouterLink>
         </Typography>
       </div>
     </>
