@@ -128,4 +128,4 @@ const queryReducer: Reducer<LeaderBoardQuery, LeaderBoardQueryAction> = (
   }
 };
 
-const getAge = () => Math.round(Math.max(25, Math.random() * 100));
+export const getAge = () => Math.round(Math.max(25, Math.random() * 100));
