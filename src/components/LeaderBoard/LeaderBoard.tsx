@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import LeaderBoardContext from "./LeaderBoard.context";
-import { LinearProgress, Typography } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 
 const LeaderBoard: React.FunctionComponent = () => {
   const { query } = useContext(LeaderBoardContext);
@@ -23,38 +23,60 @@ const LeaderBoard: React.FunctionComponent = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {query.loading && (
-            <TableRow>
-              <TableCell component="th" colSpan={3}>
-                <LinearProgress variant={"indeterminate"} />
-              </TableCell>
-            </TableRow>
+          {query.loading ? (
+            new Array(3).fill(0).map(() => (
+              <TableRow>
+                <TableCell component="th" scope="row">
+                  <Skeleton width={"30ch"} />
+                </TableCell>
+                <TableCell align="right">
+                  <Skeleton width={"5ch"} sx={{ display: "inline-block" }} />
+                </TableCell>
+                <TableCell align="right">
+                  <Skeleton width={"10ch"} sx={{ display: "inline-block" }} />
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <>
+              {query.error && (
+                <TableRow>
+                  <TableCell
+                    component="th"
+                    colSpan={3}
+                    sx={{ textAlign: "center" }}
+                  >
+                    <Typography color={"error"}>
+                      {query.error.message}
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              )}
+              {!query.error && !query.data?.rows?.length && (
+                <TableRow>
+                  <TableCell
+                    component="th"
+                    colSpan={3}
+                    sx={{ textAlign: "center" }}
+                  >
+                    <Typography color={"text.secondary"}>No results</Typography>
+                  </TableCell>
+                </TableRow>
+              )}
+              {query.data?.rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.age}</TableCell>
+                  <TableCell align="right">{row.score}</TableCell>
+                </TableRow>
+              ))}
+            </>
           )}
-          {query.error && (
-            <TableRow>
-              <TableCell
-                component="th"
-                colSpan={3}
-                sx={{ textAlign: "center" }}
-              >
-                <Typography color={"error"} gutterBottom>
-                  {query.error.message}
-                </Typography>
-              </TableCell>
-            </TableRow>
-          )}
-          {query.data?.rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.age}</TableCell>
-              <TableCell align="right">{row.score}</TableCell>
-            </TableRow>
-          ))}
         </TableBody>
       </Table>
     </TableContainer>
