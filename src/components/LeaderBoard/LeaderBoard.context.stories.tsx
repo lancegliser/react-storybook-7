@@ -5,6 +5,7 @@ import LeaderBoardContext, { getAge } from "./LeaderBoard.context";
 
 const meta = {
   component: LeaderBoardContext.Provider,
+  tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
     layout: "centered",
