@@ -9,6 +9,10 @@ const meta = {
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
     layout: "centered",
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/lQXYQZMy2xRcwL7CM9dbGY/MUI-for-Figma-(Material-UI%2C-Joy-UI%2C-MUI-X)-(Community)?node-id=6105%3A76331&t=8ZXCTR72Vs9TxOh3-1",
+    },
   },
   render: (args) => (
     <LeaderBoardContext.Provider {...args}>
