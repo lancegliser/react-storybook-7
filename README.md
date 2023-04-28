@@ -138,8 +138,6 @@ A (terrible) Figma design loaded in Storybook:
 
 <img src="docs/README/storybook-design-tab.jpg" alt="Wow, that table is awful." style="width: 500px">
 
-![storybook-design-tab.jpg | width=500px]()
-
 ### Storybook in Figma 👎
 
 You'll need to be using the hosted Chromatic integrations for this. Navigate to any story, be it the Storybook or
