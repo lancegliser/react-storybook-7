@@ -114,3 +114,34 @@ specifically, via [GitHub Actions](https://www.chromatic.com/docs/github-actions
 
 You'll need to setup a secret in your GitHub project. Remember the chromatic command they gave on install?
 That's your token. If you need a copy, you can always go to your project > manage > configure to get it.
+
+## Figma
+
+For comprehensive (ish) docs, see: [Figma - Storybook and Figma](https://help.figma.com/hc/en-us/articles/360045003494-Storybook-and-Figma).
+
+Let's start with setting your expectations. Figma integrations in either direction are _not_ designed to
+translate code to bidirectionally. A story won't make components, variants, etc. A Figma frame is not code.
+These integrations provide a means of _linking_ and _viewing_ the other system's output.
+
+### Figma in Storybook 👍
+
+A small problem due to [Unable to install beta v2 after installing Storybook v7-beta63 #185](https://github.com/storybookjs/addon-designs/issues/185).
+I expect this will be sorted before June 2023.
+
+```bash
+npm install --save-dev --legacy-peer-deps storybook-addon-designs@beta
+```
+
+Otherwise it works! You'll find a "Design" tab with an embedded `<canvas />` of your design component to eyeball from.
+
+A (terrible) Figma design loaded in Storybook:
+
+<img src="docs/README/storybook-design-tab.jpg" alt="Wow, that table is awful." style="width: 500px">
+
+### Storybook in Figma 👎
+
+You'll need to be using the hosted Chromatic integrations for this. Navigate to any story, be it the Storybook or
+Chromatic version, and copy the URL. You'll be able to provide that link on a component, variant, or instance.
+The result will be links on the right panel to launch the Story in Figma via popup or new tab.
+
+<img src="docs/README/figma-storybook-links.jpg" alt="Less than helpful links to the Story in the right panel" style="width: 500px">
