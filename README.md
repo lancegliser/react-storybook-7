@@ -134,8 +134,11 @@ npm install --save-dev --legacy-peer-deps storybook-addon-designs@beta
 
 Otherwise it works! You'll find a "Design" tab with an embedded `<canvas />` of your design component to eyeball from.
 
-A (terrible) example:
-![storybook-design-tab.jpg | width=500px](docs%2FREADME%2Fstorybook-design-tab.jpg)
+A (terrible) Figma design loaded in Storybook:
+
+<img src="docs/README/storybook-design-tab.jpg" alt="Wow, that table is awful." style="width: 500px">
+
+![storybook-design-tab.jpg | width=500px]()
 
 ### Storybook in Figma 👎
 
@@ -143,4 +146,4 @@ You'll need to be using the hosted Chromatic integrations for this. Navigate to 
 Chromatic version, and copy the URL. You'll be able to provide that link on a component, variant, or instance.
 The result will be links on the right panel to launch the Story in Figma via popup or new tab.
 
-![figma-storybook-links.jpg | width=500px](docs%2FREADME%2Ffigma-storybook-links.jpg)
+<img src="docs/README/figma-storybook-links.jpg" alt="Less than helpful links to the Story in the right panel" style="width: 500px">
