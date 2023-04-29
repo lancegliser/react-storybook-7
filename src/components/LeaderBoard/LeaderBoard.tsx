@@ -12,6 +12,9 @@ import { Skeleton, Typography } from "@mui/material";
 const LeaderBoard: React.FunctionComponent = () => {
   const { query } = useContext(LeaderBoardContext);
 
+  const sortedRows = query.data?.rows.slice() || [];
+  sortedRows.sort(sortByScoreDesc);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -63,7 +66,7 @@ const LeaderBoard: React.FunctionComponent = () => {
                   </TableCell>
                 </TableRow>
               )}
-              {query.data?.rows.map((row) => (
+              {sortedRows.map((row) => (
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -72,7 +75,9 @@ const LeaderBoard: React.FunctionComponent = () => {
                     {row.name}
                   </TableCell>
                   <TableCell align="right">{row.age}</TableCell>
-                  <TableCell align="right">{row.score}</TableCell>
+                  <TableCell align="right">
+                    {row.score ? Math.round(row.score) : ""}
+                  </TableCell>
                 </TableRow>
               ))}
             </>
@@ -83,3 +88,9 @@ const LeaderBoard: React.FunctionComponent = () => {
   );
 };
 export default LeaderBoard;
+
+interface WithScore {
+  score?: number;
+}
+const sortByScoreDesc = (a: WithScore, b: WithScore): number =>
+  (b.score || 0) - (a.score || 0);
