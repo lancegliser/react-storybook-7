@@ -15,6 +15,12 @@ const LeaderBoard: React.FunctionComponent = () => {
   const sortedRows = query.data?.rows.slice() || [];
   sortedRows.sort(sortByScoreDesc);
 
+  type Rank = Record<string, number>;
+  const ranks = sortedRows.reduce((ranks, row, index) => {
+    ranks[row.name] = index + 1;
+    return ranks;
+  }, {} as Rank);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -72,7 +78,7 @@ const LeaderBoard: React.FunctionComponent = () => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {ranks[row.name]} - {row.name}
                   </TableCell>
                   <TableCell align="right">{row.age}</TableCell>
                   <TableCell align="right">
