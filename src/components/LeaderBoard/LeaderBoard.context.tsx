@@ -99,6 +99,7 @@ interface LeaderBoardRow {
   name: string;
   age: number;
   score?: number;
+  previousScore?: number;
 }
 
 const queryDefaultState: LeaderBoardQuery = {

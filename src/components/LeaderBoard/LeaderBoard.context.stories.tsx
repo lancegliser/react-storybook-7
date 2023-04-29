@@ -49,6 +49,27 @@ export const Default: Story = {
   },
 };
 
+export const WithPreviousScores: Story = {
+  args: {
+    value: {
+      query: {
+        data: {
+          rows: [
+            { age: getAge(), name: "Roberto", score: 2, previousScore: 1.5 },
+            {
+              age: getAge(),
+              name: "Lance",
+              score: Math.random() * 5,
+              previousScore: 5,
+            },
+            { age: getAge(), name: "Petra", score: 4, previousScore: 3.5 },
+          ],
+        },
+      },
+    },
+  },
+};
+
 export const NoResults: Story = {};
 
 export const Loading: Story = {
