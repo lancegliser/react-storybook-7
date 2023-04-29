@@ -88,17 +88,18 @@ export const LeaderBoardContextProvider = (({ children }) => {
 }) as React.FunctionComponent<Props>;
 
 // A rough approximation of Apollo client's `useQuery` handling
-interface LeaderBoardQuery {
+export interface LeaderBoardQuery {
   data?: {
     rows: LeaderBoardRow[];
   };
   loading?: boolean;
   error?: Error;
 }
-interface LeaderBoardRow {
+export interface LeaderBoardRow {
   name: string;
   age: number;
   score?: number;
+  previousScore?: number;
 }
 
 const queryDefaultState: LeaderBoardQuery = {
