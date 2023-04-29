@@ -36,7 +36,9 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof LeaderBoardContext.Provider>;
+} satisfies Meta<
+  typeof LeaderBoardContext.Provider & { changeInterval?: number }
+>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -65,11 +67,22 @@ export const WithPreviousScores: Story = {
 };
 
 export const WithChangingScores: Story = {
-  render: () => <DynamicLeaderBoardContext />,
-  args: undefined,
+  render: (args) => {
+    // @ts-expect-error I defined it below, shoosh.
+    const changeInterval = args.changeInterval;
+    return <DynamicLeaderBoardContext changeInterval={changeInterval} />;
+  },
+  args: {
+    changeInterval: 3000,
+  } as Story["args"] & DynamicLeaderBoardContextProps,
 };
 
-const DynamicLeaderBoardContext: React.FunctionComponent = () => {
+interface DynamicLeaderBoardContextProps {
+  changeInterval: number;
+}
+const DynamicLeaderBoardContext: React.FunctionComponent<
+  DynamicLeaderBoardContextProps
+> = ({ changeInterval }) => {
   const [query, dispatch] = useReducer(queryReducer, queryDefaultState);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
 
@@ -91,14 +104,14 @@ const DynamicLeaderBoardContext: React.FunctionComponent = () => {
           })),
         },
       });
-    }, Math.max(1000, Math.random() * 4000));
+    }, changeInterval);
 
     return () => {
       if (timeoutRef.current) {
         clearInterval(timeoutRef.current);
       }
     };
-  }, [query]);
+  }, [query, changeInterval]);
 
   return (
     <LeaderBoardContext.Provider value={{ query }}>
