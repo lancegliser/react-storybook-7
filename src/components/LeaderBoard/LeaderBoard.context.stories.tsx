@@ -33,9 +33,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-
-export const Data: Story = {
+export const Default: Story = {
   args: {
     value: {
       query: {
@@ -50,6 +48,8 @@ export const Data: Story = {
     },
   },
 };
+
+export const NoResults: Story = {};
 
 export const Loading: Story = {
   args: {
