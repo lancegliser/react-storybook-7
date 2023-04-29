@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import LeaderBoard from "./LeaderBoard";
-import React from "react";
-import LeaderBoardContext, { getAge } from "./LeaderBoard.context";
+import React, { Reducer, useEffect, useReducer, useRef } from "react";
+import LeaderBoardContext, { LeaderBoardQuery } from "./LeaderBoard.context";
+
+const getAge = () => Math.round(Math.max(25, Math.random() * 100));
 
 const meta = {
   component: LeaderBoardContext.Provider,
@@ -22,7 +24,13 @@ const meta = {
   args: {
     value: {
       query: {
-        data: undefined,
+        data: {
+          rows: [
+            { age: getAge(), name: "Roberto", score: 2 },
+            { age: getAge(), name: "Lance", score: Math.random() * 5 },
+            { age: getAge(), name: "Petra", score: 10_000 },
+          ],
+        },
         error: undefined,
         loading: false,
       },
@@ -33,21 +41,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    value: {
-      query: {
-        data: {
-          rows: [
-            { age: getAge(), name: "Roberto", score: 2 },
-            { age: getAge(), name: "Lance", score: Math.random() * 5 },
-            { age: getAge(), name: "Petra", score: 10_000 },
-          ],
-        },
-      },
-    },
-  },
-};
+export const Default: Story = {};
 
 export const WithPreviousScores: Story = {
   args: {
@@ -70,7 +64,92 @@ export const WithPreviousScores: Story = {
   },
 };
 
-export const NoResults: Story = {};
+export const WithChangingScores: Story = {
+  render: () => <DynamicLeaderBoardContext />,
+  args: undefined,
+};
+
+const DynamicLeaderBoardContext: React.FunctionComponent = () => {
+  const [query, dispatch] = useReducer(queryReducer, queryDefaultState);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
+
+  useEffect(() => {
+    timeoutRef.current = setTimeout(() => {
+      // Guess we're stuck
+      if (query.error) {
+        return;
+      }
+
+      // Data changes
+      dispatch({
+        type: "setData",
+        data: {
+          rows: query.data!.rows.map((row) => ({
+            ...row,
+            score: Math.random() * 5,
+            previousScore: row.score,
+          })),
+        },
+      });
+    }, Math.max(1000, Math.random() * 4000));
+
+    return () => {
+      if (timeoutRef.current) {
+        clearInterval(timeoutRef.current);
+      }
+    };
+  }, [query]);
+
+  return (
+    <LeaderBoardContext.Provider value={{ query }}>
+      <LeaderBoard />
+    </LeaderBoardContext.Provider>
+  );
+};
+
+// A rough approximation of Apollo client's `useQuery` handling
+const queryDefaultState: LeaderBoardQuery = {
+  data: {
+    rows: [
+      { age: getAge(), name: "Roberto", score: Math.random() * 5 },
+      { age: getAge(), name: "Lance", score: Math.random() * 5 },
+      { age: getAge(), name: "Petra", score: Math.random() * 5 },
+    ],
+  },
+  loading: false,
+  error: undefined,
+};
+type LeaderBoardQueryAction =
+  | { type: "reset" }
+  | { type: "setLoading" }
+  | { type: "setError"; error: LeaderBoardQuery["error"] }
+  | { type: "setData"; data: LeaderBoardQuery["data"] };
+
+const queryReducer: Reducer<LeaderBoardQuery, LeaderBoardQueryAction> = (
+  state,
+  action
+) => {
+  switch (action.type) {
+    case "reset":
+      return queryDefaultState;
+    case "setLoading":
+      return { ...queryDefaultState, loading: true };
+    case "setError":
+      return { loading: false, data: undefined, error: action.error };
+    case "setData":
+      return { loading: false, data: action.data, error: undefined };
+  }
+};
+
+export const NoResults: Story = {
+  args: {
+    value: {
+      query: {
+        data: undefined,
+      },
+    },
+  },
+};
 
 export const Loading: Story = {
   args: {
